@@ -47,7 +47,8 @@ app.controller('myCtrl', function($scope,$http) {
         //   });
         
 
-          $http.get("http://oss.saofrancisco.com.br/BoletoSAUDE/Boleto?acao=listar&cpf=" + $scope.cpfBenAtual)
+         // $http.get("http://oss.saofrancisco.com.br/BoletoSAUDE/Boleto?acao=listar&cpf=" + $scope.cpfBenAtual)
+         $http.get("https://felipe-10f7b37c-eval-test.apigee.net/boleto-sf/BoletoSAUDE/Boleto?acao=listar&cpf=" + $scope.cpfBenAtual)
           .then(function(response) {
 
             if(response.data.boletos.length > 0){
