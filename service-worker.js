@@ -23,37 +23,20 @@ self.addEventListener('install', function (e) {
 });
 
 
-self.addEventListener('activate', function(e) {
+self.addEventListener('activate', function (e) {
+    console.log('[ServiceWorker] Activate');
     e.waitUntil(
-      caches.keys().then(function(keyList) {
-        return Promise.all(
-            keyList.filter(function(key) {
-            // Return true if you want to remove this cache,
-            // but remember that caches are shared across
-            // the whole origin
-          }).map(function(key) {
-            return caches.delete(key);
-          })
-        );
-      })
+        caches.keys().then(function (keyList) {
+            return Promise.all(keyList.map(function(key) {
+                console.log(key);
+                if (key !== cacheName) {
+                    console.log('[ServiceWorker] Remover Cache velho!', key);
+                    return caches.delete(key);
+                }
+            }));
+        })
     );
-  });
-
-
-// self.addEventListener('activate', function (e) {
-//     console.log('[ServiceWorker] Activate');
-//     e.waitUntil(
-//         caches.keys().then(function (keyList) {
-//             return Promise.all(keyList.map(function(key) {
-//                 console.log(key);
-//                 if (key !== cacheName) {
-//                     console.log('[ServiceWorker] Remover Cache velho!', key);
-//                     return caches.delete(key);
-//                 }
-//             }));
-//         })
-//     );
-// });
+});
 
 //carrega os arquivos de cache offline 
 self.addEventListener('fetch', function (e) {
