@@ -93,6 +93,7 @@ if ('serviceWorker' in navigator) {
     .register('./service-worker.js')
     .then(function(reg) {
         console.log('Service worker Registered');
+        console.log(reg);
     })
     .catch(function (err) {
         console.log('erro', err);
