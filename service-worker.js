@@ -1,4 +1,4 @@
-let cacheName = 'sf-boleto-v.1.0.3';
+let cacheName = 'sf-boleto-v.1.0.4';
 let filesToCache = [
     './',
     'index.html',
@@ -27,6 +27,7 @@ self.addEventListener('activate', function (e) {
     e.waitUntil(
         caches.keys().then(function (keyList) {
             return Promise.all(keyList.map(function(key) {
+                console.log(key);
                 if (key !== cacheName) {
                     console.log('[ServiceWorker] Remover Cache velho!', key);
                     return caches.delete(key);
