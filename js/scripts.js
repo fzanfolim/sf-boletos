@@ -13,48 +13,21 @@ app.controller('myCtrl', function($scope,$http) {
 
         $scope.boletos      = [];
 
+//02168552843 para teste
 
 
-        // $http.get("http://oss.saofrancisco.com.br/BoletoSAUDE/Boleto?acao=listar&cpf=02168552843")
-        //   .then(function(response) {
-        //       console.log(response.data);
-
-        //       angular.forEach(response.data.boletos, function(value, key) {
-        //         value.nossoNumero   =   value.nossoNumero.slice(-8);
-        //         $scope.boletos.push(value);
-                
-                
-        //       });
-
-
-        //       $http.get("http://oss.saofrancisco.com.br/BoletoSAUDE/Boleto?acao=listar&cpf=" + $scope.cpfBenAtual)
-        //         .then(function(response) {
-
-        //           if(response.data.boletos.length > 0){
-
-        //             angular.forEach(response.data.boletos, function(value, key) {
-        //               value.nossoNumero   =   value.nossoNumero.slice(-8);
-        //               $scope.boletos.push(value);
-        //             });
-        //          }
-                
-        //          //$scope.cpfBenAtual = "";
-
-        //       });
-
-
-        //       // alert($scope.boletos);
-        //   });
-        
-
-         // $http.get("http://oss.saofrancisco.com.br/BoletoSAUDE/Boleto?acao=listar&cpf=" + $scope.cpfBenAtual)
          $http.get("https://felipe-10f7b37c-eval-test.apigee.net/boleto-sf/BoletoSAUDE/Boleto?acao=listar&cpf=" + $scope.cpfBenAtual)
           .then(function(response) {
 
             if(response.data.boletos.length > 0){
 
               angular.forEach(response.data.boletos, function(value, key) {
-                value.nossoNumero   =   value.nossoNumero.slice(-8);
+                
+               
+                separarar = value.nossoNumero.split(" ");
+
+                value.nossoNumero   =   separarar.pop ();
+                
                 $scope.boletos.push(value);
               });
            }

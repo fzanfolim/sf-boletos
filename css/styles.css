@@ -53,6 +53,15 @@ input {
     padding: 10px 20px;
 }
 
+.lista-boletos{
+    border: 2px solid #607d8b;
+    box-shadow: 1px 1px 1px;
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    display: block;
+}
+
 /** Muito pequeno **/
 .container {
     width: 100%;

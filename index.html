@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
     <base href="/sf-boletos/">
+    <!-- <base href="/"> Para Teste Local -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -45,30 +46,36 @@
 
 </head>
 <body class="grey lighten-5 blue-grey-text" ng-app="myApp" ng-controller="myCtrl">
-    <header id="header" class="container grey lighten-4">
-        <h3>Boletos São Francisco</h3>
+    <header id="header" class="container grey lighten-4" ng-hide="online">
+        <!-- <h3>Boletos São Francisco</h3> -->
         <small ng-show="online">com internet</small>
-        <small ng-hide="online">sem internet</small>
+        <small ng-hide="online">sem conexão verifique a internet</small>
     </header>
 
     <div id="content" class="container grey lighten-4">
         <p>Informe o CPF</p>
 
         <form  class="row">
-            <input type="number" placeholder="Pesquisar Boletos..." class="col-2 white" ng-model="cpfBenAtual">
+            <input type="number" placeholder="CPF" class="col-2 white" ng-model="cpfBenAtual">
             <input type="button" value="+" class="blue-grey white-text col-1" ng-click="buscaBoleto();">
          
         </form>
 
+      
+    </div>
+    <div style="margin-top: 10px;">
+
         <ul >
-            <li ng-repeat="item in boletos" >
+            <li ng-repeat="item in boletos" class="lista-boletos">
                     
 
-                <a href="http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/{{cpfBenAtual}}_{{item.nossoNumero}}_0.pdf" target="_blank" >
+                <a href="http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/{{cpfBenAtual}}_{{item.nossoNumero}}_0.pdf" target="_blank" style="text-decoration: none;">
                     {{item.vencimento}} - {{item.valor}}
                 </a>
             </li>
         </ul>
+
+
     </div>
 </body>
 
