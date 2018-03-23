@@ -16,6 +16,7 @@ app.controller('myCtrl', function($scope,$http) {
 //02168552843 para teste
 
 
+
          $http.get("https://felipe-10f7b37c-eval-test.apigee.net/boleto-sf/BoletoSAUDE/Boleto?acao=listar&cpf=" + $scope.cpfBenAtual)
           .then(function(response) {
 
@@ -41,6 +42,24 @@ app.controller('myCtrl', function($scope,$http) {
 
 
     }
+
+
+
+    $scope.geraPdf = function(nossoNumero){
+
+      var url = "http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/"+ $scope.cpfBenAtual + "_" + nossoNumero + "_0.pdf";
+      
+      $http.get(url, {responseType: 'arraybuffer'})
+      .success(function (data) {
+          var file = new Blob([data], {type: 'application/pdf'});
+          var fileURL = URL.createObjectURL(file);
+          window.open(fileURL);
+   });
+
+
+
+    }
+    
 
 
 });
