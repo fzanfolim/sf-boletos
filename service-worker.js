@@ -1,4 +1,4 @@
-let cacheName = 'sf-boleto-v.1.0.7';
+let cacheName = 'sf-boleto-v.1.0.8';
 let filesToCache = [
     './',
     'index.html',
