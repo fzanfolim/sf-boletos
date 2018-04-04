@@ -1,6 +1,4 @@
 
-
-
 var app = angular.module('myApp', ['angular-loading-bar']);
 
 app.controller('myCtrl', function($scope,$http) {
