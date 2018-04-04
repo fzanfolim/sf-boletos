@@ -69,14 +69,16 @@
             <li ng-repeat="item in boletos" class="lista-boletos">
                     <!-- <div ng-click="geraPdf(item.nossoNumero);">{{item.vencimento}} - {{item.valor}}</div> -->
                      
-                <a href="http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/{{cpfBenAtual}}_{{item.nossoNumero}}_0.pdf" target="_blank" style="text-decoration: none;">
+                <a href="#"  style="text-decoration: none;" ng-click="imprimir(item.nossoNumero)">
                     {{item.vencimento}} - {{item.valor}}
                 </a>
+
             </li>
         </ul>
 
 
     </div>
+
     <p style="position: absolute; bottom: 0; left: 33%;">sf-boleto-v.1.0.8</p>
 </body>
 

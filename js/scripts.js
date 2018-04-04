@@ -1,7 +1,7 @@
 
 var app = angular.module('myApp', ['angular-loading-bar']);
 
-app.controller('myCtrl', function($scope,$http) {
+app.controller('myCtrl', function($scope,$http,$window) {
     $scope.cpfBenAtual = "";
     $scope.boletos      = [];
  
@@ -21,7 +21,6 @@ app.controller('myCtrl', function($scope,$http) {
             if(response.data.boletos.length > 0){
 
               angular.forEach(response.data.boletos, function(value, key) {
-                
                
                 separarar = value.nossoNumero.split(" ");
 
@@ -29,6 +28,8 @@ app.controller('myCtrl', function($scope,$http) {
                 
                 $scope.boletos.push(value);
               });
+           }else{
+             alert('Não existem boletos para o cpf informado!');
            }
           
            //$scope.cpfBenAtual = "";
@@ -41,22 +42,49 @@ app.controller('myCtrl', function($scope,$http) {
 
     }
 
+$scope.imprimir = function (nossoNumero){
+
+$scope.url = 'http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/'+$scope.cpfBenAtual+'_'+nossoNumero+'_0.pdf';
+
+$http({
+  url : $scope.url,
+  method : 'GET',
+  headers : {
+      'Content-type' : 'application/pdf'
+  },
+  responseType : 'arraybuffer'
+}).success(function(data, status, headers, config) {
+  var pdfFile = new Blob([ data ], {
+      type : 'application/pdf'
+  });
+  var pdfUrl = URL.createObjectURL(pdfFile);
+  var printwWindow = $window.open(pdfUrl);
+  printwWindow.print();
+}).error(function(data, status, headers, config) {
+  alert('Sorry, something went wrong')
+});
 
 
-    $scope.geraPdf = function(nossoNumero){
 
-      var url = "http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/"+ $scope.cpfBenAtual + "_" + nossoNumero + "_0.pdf";
+
+
+
+}
+
+  //   $scope.geraPdf = function(nossoNumero){
+
+  //     var url = "http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/"+ $scope.cpfBenAtual + "_" + nossoNumero + "_0.pdf";
       
-      $http.get(url, {responseType: 'arraybuffer'})
-      .success(function (data) {
-          var file = new Blob([data], {type: 'application/pdf'});
-          var fileURL = URL.createObjectURL(file);
-          window.open(fileURL);
-   });
+  //     $http.get(url, {responseType: 'arraybuffer'})
+  //     .success(function (data) {
+  //         var file = new Blob([data], {type: 'application/pdf'});
+  //         var fileURL = URL.createObjectURL(file);
+  //         window.open(fileURL);
+  //  });
 
 
 
-    }
+  //   }
     
 
 
