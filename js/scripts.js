@@ -45,28 +45,7 @@ app.controller('myCtrl', function($scope,$http,$window) {
 $scope.imprimir = function (nossoNumero){
 
 $scope.url = 'http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/'+$scope.cpfBenAtual+'_'+nossoNumero+'_0.pdf';
-
-$http({
-  url : $scope.url,
-  method : 'GET',
-  headers : {
-      'Content-type' : 'application/pdf'
-  },
-  responseType : 'arraybuffer'
-}).success(function(data, status, headers, config) {
-  var pdfFile = new Blob([ data ], {
-      type : 'application/pdf'
-  });
-  var pdfUrl = URL.createObjectURL(pdfFile);
-  var printwWindow = $window.open(pdfUrl);
-  printwWindow.print();
-}).error(function(data, status, headers, config) {
-  alert('Sorry, something went wrong')
-});
-
-
-
-
+$window.open($scope.url);
 
 
 }
