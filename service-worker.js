@@ -1,9 +1,10 @@
-let cacheName = 'sf-boleto-v.1.0.9';
+let cacheName = 'sf-boleto-v.1.0.10';
 let filesToCache = [
     './',
     'index.html',
     'css/colors.css',
     'css/styles.css',
+    'css/loading-bar.min.css',
     'js/array.observe.polyfill.js',
     'js/object.observe.polyfill.js',
     'js/scripts.js',

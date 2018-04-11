@@ -42,29 +42,13 @@ app.controller('myCtrl', function($scope,$http,$window) {
 
     }
 
-$scope.imprimir = function (nossoNumero){
+// $scope.imprimir = function (nossoNumero){
 
-$scope.url = 'http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/'+$scope.cpfBenAtual+'_'+nossoNumero+'_0.pdf';
-$window.open($scope.url);
-
-
-}
-
-  //   $scope.geraPdf = function(nossoNumero){
-
-  //     var url = "http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/"+ $scope.cpfBenAtual + "_" + nossoNumero + "_0.pdf";
-      
-  //     $http.get(url, {responseType: 'arraybuffer'})
-  //     .success(function (data) {
-  //         var file = new Blob([data], {type: 'application/pdf'});
-  //         var fileURL = URL.createObjectURL(file);
-  //         window.open(fileURL);
-  //  });
+// $scope.url = 'http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/'+$scope.cpfBenAtual+'_'+nossoNumero+'_0.pdf';
+// $window.open($scope.url);
 
 
-
-  //   }
-    
+// }
 
 
 });

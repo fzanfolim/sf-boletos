@@ -8,8 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PWA -São Francisco</title>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <link rel="stylesheet" href="css/colors.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/loading-bar.min.css">
     <link rel="manifest" href="manifest.json">
 
     <!-- <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
@@ -53,13 +55,14 @@
         <small ng-hide="online">sem conexão verifique a internet</small>
     </header>
 
-    <div id="content" class="container grey lighten-4">
-        <p>Informe o CPF</p>
+    <div id="content" class="container" style="background:#7da9d2; text-align: center;">
+        <p style="color:white;">Informe CPF do Beneficiário</p>
 
         <form  class="row">
-            <input type="number" placeholder="CPF" class="col-2 white" ng-model="cpfBenAtual">
-            <input type="button" value="+" class="blue-grey white-text col-1" ng-click="buscaBoleto();">
-         
+            <input type="number" placeholder="CPF" class="col-3 white" ng-model="cpfBenAtual">
+            <button type="button" class="botao-pesquisar white-text col-2" ng-click="buscaBoleto();">
+                    <i class="fas fa-search"></i>
+            </button>
         </form>
 
       
@@ -70,12 +73,10 @@
             <li ng-repeat="item in boletos" class="lista-boletos">
                     <!-- <div ng-click="geraPdf(item.nossoNumero);">{{item.vencimento}} - {{item.valor}}</div> -->
                      
-                <a href="#"  style="text-decoration: none;" ng-click="imprimir(item.nossoNumero)">
-                    {{item.vencimento}} - {{item.valor}}
-                </a>
-
-                <a href="http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/{{cpfBenAtual}}_{{item.nossoNumero}}_0.pdf"  style="text-decoration: none;" download >
-                    teste2 {{item.vencimento}} - {{item.valor}}
+                <a href="http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/{{cpfBenAtual}}_{{item.nossoNumero}}_0.pdf"  style="text-decoration: none; color: white;" download >
+                    <i class="fas fa-file-alt icone-boleto"></i>
+                    <h3>{{item.vencimento}}</h3>
+                    <p style="margin: 0; padding: 0;">{{item.valor}}</p> 
                 </a>
 
             </li>
@@ -84,7 +85,7 @@
 
     </div>
   
-    <p style="position: absolute; bottom: 0; left: 33%;">sf-boleto-v.1.0.9</p>
+    <p style="position: absolute; bottom: 0; left: 33%;">sf-boleto-v.1.0.10</p>
 </body>
 
 <script src="js/scripts.js"></script>
