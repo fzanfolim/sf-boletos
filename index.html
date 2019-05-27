@@ -56,15 +56,29 @@
     </header>
 
     <div id="content" class="container" style="background:#7da9d2; text-align: center;">
-        <p style="color:white;">Informe CPF/CNPJ</p>
+        <p style="color:white;" ng-hide="!base">Informe CPF/CNPJ</p>
+        <p style="color:white;" ng-hide="base">Selecione o produto</p>
 
-        <form  class="row">
-            <input type="number" placeholder="CPF" class="col-2 white" ng-model="cpfBenAtual">
+        <div ng-hide="base">
+                <button type="button" class="btn-opcao-base" ng-click="base = 'ODONTO'">
+                        Odonto
+                </button>
+                <button type="button" class="btn-opcao-base" ng-click="base = 'SAUDE'">
+                        Saúde
+                </button>
+        </div>
+
+
+        <form  class="row"ng-hide="!base">
+
+   
+            <input type="number" placeholder="CPF/CNPJ" class="col-2 white" ng-model="cpfBenAtual">
             <button type="button" class="botao-pesquisar white-text col-1" ng-click="buscaBoleto();">
                     <i class="fas fa-search"></i>
             </button>
+            
         </form>
-
+        <span style="color: white;" ng-hide="!base" ng-click="base = ''">voltar</span>
       
     </div>
     <div style="margin-top: 10px;">
@@ -85,7 +99,7 @@
 
     </div>
   
-    <p style="position: absolute; bottom: 0; left: 33%;">sf-boleto-v.1.0.10</p>
+    <p style="position: absolute; bottom: 0; left: 33%;">sf-boleto-v.1.0.11</p>
 </body>
 
 <script src="js/scripts.js"></script>

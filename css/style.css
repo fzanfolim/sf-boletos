@@ -74,6 +74,16 @@ input {
     flex-grow: 2;
 }
 
+.btn-opcao-base{
+    background: #4c82b5;
+    padding: 10px;
+    border-radius: 3px;
+    margin: 10px;
+    font-size: 20px;
+    box-shadow: 1px 2px 2px #4c82b599;
+    color: white;
+}
+
 /** Pequeno **/
 @media (min-width: 576px) {
     .container {

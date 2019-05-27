@@ -4,6 +4,7 @@ var app = angular.module('myApp', ['angular-loading-bar']);
 app.controller('myCtrl', function($scope,$http,$window) {
     $scope.cpfBenAtual = "";
     $scope.boletos      = [];
+    $scope.base = "";
  
 
     $scope.buscaBoleto = function(){
@@ -15,7 +16,7 @@ app.controller('myCtrl', function($scope,$http,$window) {
 
 
 
-         $http.get("https://felipe-10f7b37c-eval-test.apigee.net/boleto-sf/BoletoSAUDE/Boleto?acao=listar&cpf=" + $scope.cpfBenAtual)
+         $http.get("https://felipe-10f7b37c-eval-test.apigee.net/boleto-sf/Boleto"+ $scope.base +"/Boleto?acao=listar&cpf=" + $scope.cpfBenAtual)
           .then(function(response) {
 
             if(response.data.boletos.length > 0){
