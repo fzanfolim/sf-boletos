@@ -92,7 +92,12 @@
             <li ng-repeat="item in boletos" class="lista-boletos">
                     <!-- <div ng-click="geraPdf(item.nossoNumero);">{{item.vencimento}} - {{item.valor}}</div> -->
                      
-                <a href="http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/{{cpfBenAtual}}_{{item.nossoNumero}}_0.pdf"  style="text-decoration: none; color: white;" download >
+                <a href="http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/{{cpfBenAtual}}_{{item.nossoNumero}}_0.pdf"  style="text-decoration: none; color: white;" download ng-hide="base == 'ODONTO'">
+                    <i class="fas fa-file-alt icone-boleto"></i>
+                    <h3>{{item.vencimento}}</h3>
+                    <p style="margin: 0; padding: 0;">{{item.valor}}</p> 
+                </a>
+                <a href="http://oss.saofrancisco.com.br/BoletoODONTO/GetBoleto/{{cpfBenAtual}}_{{item.nossoNumero}}_0.pdf"  style="text-decoration: none; color: white;" download ng-show="base == 'ODONTO'">
                     <i class="fas fa-file-alt icone-boleto"></i>
                     <h3>{{item.vencimento}}</h3>
                     <p style="margin: 0; padding: 0;">{{item.valor}}</p> 
@@ -104,7 +109,7 @@
 
     </div>
   
-    <p style="position: absolute; bottom: 0; left: 33%;">sf-boleto-v.1.0.11</p>
+    <p style="position: absolute; bottom: 0; left: 33%;">sf-boleto-v.1.0.12</p>
 </body>
 
 <script src="js/scripts.js"></script>
