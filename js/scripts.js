@@ -41,8 +41,8 @@ app.controller('myCtrl', function($scope,$http,$window) {
 
 
       $scope.boletos      = [];
-  
 
+      
       if($scope.base == 'ODONTO'){
 
         $scope.cedente ='02727724000167' ;
@@ -66,27 +66,34 @@ app.controller('myCtrl', function($scope,$http,$window) {
       };
 
 
+      if($scope.cpfBenAtual.toString().length > 10){
+        
+        $http(req).success(function(data){
+          console.log(data);
+  
+  
+          if(data && data.length > 0){
+  
+            angular.forEach(data, function(value, key) {
               
-      $http(req).success(function(data){
-        console.log(data);
+              // value.linkTotem = value.linkTotem.replace(/^http:\/\//i, 'https://');
+              $scope.boletos.push(value);
+            });
+         }else{
+           alert('Não existem boletos para o cpf informado!');
+         }
+  
+        
+        }).error(function(error){
+        //Esta parte trata o retorno com erro
+          alert("Erro...")
+        });
 
+        
 
-        if(data && data.length > 0){
-
-          angular.forEach(data, function(value, key) {
-            
-            // value.linkTotem = value.linkTotem.replace(/^http:\/\//i, 'https://');
-            $scope.boletos.push(value);
-          });
-       }else{
-         alert('Não existem boletos para o cpf informado!');
-       }
-
-      
-      }).error(function(error){
-      //Esta parte trata o retorno com erro
-        alert("Erro...")
-      });
+      }else{
+        alert('Documento inválido');
+      }              
 
 
 
