@@ -78,7 +78,7 @@
 
    
             <input type="number" placeholder="CPF/CNPJ" class="col-2 white" ng-model="cpfBenAtual">
-            <button type="button" class="botao-pesquisar white-text col-1" ng-click="buscaBoleto();">
+            <button type="button" class="botao-pesquisar white-text col-1" ng-click="buscaBoletoV2();">
                     <i class="fas fa-search"></i>
             </button>
             
@@ -92,7 +92,7 @@
             <li ng-repeat="item in boletos" class="lista-boletos">
                     <!-- <div ng-click="geraPdf(item.nossoNumero);">{{item.vencimento}} - {{item.valor}}</div> -->
                      
-                <a href="http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/{{cpfBenAtual}}_{{item.nossoNumero}}_0.pdf"  style="text-decoration: none; color: white;" download ng-hide="base == 'ODONTO'">
+                <!-- <a href="http://oss.saofrancisco.com.br/BoletoSAUDE/GetBoleto/{{cpfBenAtual}}_{{item.nossoNumero}}_0.pdf"  style="text-decoration: none; color: white;" download ng-hide="base == 'ODONTO'">
                     <i class="fas fa-file-alt icone-boleto"></i>
                     <h3>{{item.vencimento}}</h3>
                     <p style="margin: 0; padding: 0;">{{item.valor}}</p> 
@@ -101,7 +101,14 @@
                     <i class="fas fa-file-alt icone-boleto"></i>
                     <h3>{{item.vencimento}}</h3>
                     <p style="margin: 0; padding: 0;">{{item.valor}}</p> 
+                </a> -->
+
+                <a href="{{item.link}}"  style="text-decoration: none; color: white;" download >
+                    <i class="fas fa-file-alt icone-boleto"></i>
+                    <h3>{{item.vencimento}}</h3>
+                    <p style="margin: 0; padding: 0;">{{item.valor}}</p> 
                 </a>
+
 
             </li>
         </ul>

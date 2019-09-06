@@ -7,41 +7,93 @@ app.controller('myCtrl', function($scope,$http,$window) {
     $scope.base = "";
  
 
-    $scope.buscaBoleto = function(){
+    // $scope.buscaBoleto = function(){
 
 
-        $scope.boletos      = [];
-
-//02168552843 para teste
+    //     $scope.boletos      = [];
 
 
+    //      $http.get("https://felipe-10f7b37c-eval-test.apigee.net/boleto-sf/Boleto"+ $scope.base +"/Boleto?acao=listar&cpf=" + $scope.cpfBenAtual)
+    //       .then(function(response) {
 
-         $http.get("https://felipe-10f7b37c-eval-test.apigee.net/boleto-sf/Boleto"+ $scope.base +"/Boleto?acao=listar&cpf=" + $scope.cpfBenAtual)
-          .then(function(response) {
+    //         if(response.data.boletos.length > 0){
 
-            if(response.data.boletos.length > 0){
-
-              angular.forEach(response.data.boletos, function(value, key) {
+    //           angular.forEach(response.data.boletos, function(value, key) {
                
-                separarar = value.nossoNumero.split(" ");
+    //             separarar = value.nossoNumero.split(" ");
 
-                value.nossoNumero   =   separarar.pop ();
+    //             value.nossoNumero   =   separarar.pop ();
                 
-                $scope.boletos.push(value);
-              });
-           }else{
-             alert('Não existem boletos para o cpf informado!');
-           }
+    //             $scope.boletos.push(value);
+    //           });
+    //        }else{
+    //          alert('Não existem boletos para o cpf informado!');
+    //        }
           
-           //$scope.cpfBenAtual = "";
+    //        //$scope.cpfBenAtual = "";
 
-        });
+    //     });
+
+    // }
+
+
+    $scope.buscaBoletoV2 = function(){
+
+
+      $scope.boletos      = [];
+  
+
+      if($scope.base == 'ODONTO'){
+
+        $scope.cedente ='02727724000167' ;
+
+      }else{
+        $scope.cedente ='01613433000185' ;
+      }
+
+
+      var req = {
+        method: 'POST',
+        url: 'https://apigateway.saofrancisco.com.br/boleto/cobranca/listaBoletoRegistrado',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: {
+          inscCedente 	    : $scope.cedente,
+          inscSacado			: $scope.cpfBenAtual.toString()
+            
+        }
+      };
+
+
+              
+      $http(req).success(function(data){
+        console.log(data);
+
+
+        if(data && data.length > 0){
+
+          angular.forEach(data, function(value, key) {
+            
+            // value.linkTotem = value.linkTotem.replace(/^http:\/\//i, 'https://');
+            $scope.boletos.push(value);
+          });
+       }else{
+         alert('Não existem boletos para o cpf informado!');
+       }
+
+      
+      }).error(function(error){
+      //Esta parte trata o retorno com erro
+        alert("Erro...")
+      });
 
 
 
 
 
-    }
+
+  }
 
 // $scope.imprimir = function (nossoNumero){
 
